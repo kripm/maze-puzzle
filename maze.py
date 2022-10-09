@@ -61,7 +61,14 @@ class Maze:
             cell (Cell): A Cell object.
 
         """
-        delta_coords = [("N", (0, -1)), ("E", (1, 0)), ("W", (-1, 0)), ("S", (0, 1))]
+        # fmt: off
+        delta_coords = [
+            ("N", (0, -1)), 
+            ("E", (1, 0)), 
+            ("W", (-1, 0)), 
+            ("S", (0, 1))
+        ]
+        # fmt: on
         neighbours = []
         for direction, (delta_x, delta_y) in delta_coords:
             new_x = cell.x + delta_x
@@ -73,13 +80,15 @@ class Maze:
         return neighbours
 
     def __str__(self):
-        """Returns a text-based interpretation of the maze."""
+        """Returns a really bad text-based interpretation of the maze."""
         maze_rows = ["-" * self.rows * 2]
         for y in range(self.columns):
             maze_row = ["|"]
             for x in range(self.rows):
                 if self.maze[x][y].walls["E"]:
                     maze_row.append(" |")
+                elif self.maze[x][y].player_trail == True:
+                    maze_row.append('🍪')
                 else:
                     maze_row.append("  ")
             maze_rows.append("".join(maze_row))
@@ -87,6 +96,8 @@ class Maze:
             for x in range(self.columns):
                 if self.maze[x][y].walls["S"]:
                     maze_row.append("-+")
+                elif self.maze[x][y].player_trail == True:
+                    maze_row.append('🍪')
                 else:
                     maze_row.append(" +")
             maze_rows.append("".join(maze_row))
