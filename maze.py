@@ -57,8 +57,17 @@ class Maze:
     def find_valid_neighbours(self, cell: "Cell") -> list[tuple[str, "Cell"]]:
         """Returns a list of a Cell's unvisited neighbours.
 
+        Checks if there is a neighbouring Cell in each direction of the Cell.
+        If the neighbouring Cell has all walls, it is unvisited and will be added to
+        the list of valid neighbours.
+        Used in the creation of the Maze to find how many neighbours of a Cell is
+        unvisited.
+
         Args:
             cell (Cell): A Cell object.
+            
+        Returns:
+            list[tuple[str, Cell]]: A list of the directions with valid Cells.
 
         """
         # fmt: off
