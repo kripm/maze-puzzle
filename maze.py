@@ -22,6 +22,7 @@ class Maze:
         self.maze = [
             [Cell(x, y) for y in range(self.columns)] for x in range(self.rows)
         ]
+        self.make_maze()
 
     def make_maze(self):
         """Creates a perfect maze using the depth-first search algorithm.
